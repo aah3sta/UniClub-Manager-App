@@ -1,16 +1,9 @@
 ﻿# UniClub-Manager-App
+ 
+<div>
 
----
-
-<div align="center">
-
-# THE UNICLUB MANAGER
-
+# UNICLUB MANAGER APP
 **The Best Administrative Suite for University Organizations**
-
----
-
-### **Redefining Club Operations**
 
 *No more spreadsheets. No more paper. Just pure efficiency.*
 
@@ -40,11 +33,3 @@ Root/
 
 ```
 <div align="center">
-
-*Built with ❤️ by the UniClub Dev Team*
-
-</div>
-
----gives it those "pro dev" colors.
-
-**Is this more the vibe you were going for?** If you have a specific color theme (like the light blue from your screenshot), I can show you how to swap the badge colors to match it!
