@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 Public Class Form1
-    Dim connString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\UniClubDB.accdb"
+    Dim connString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\UniClubDB BD.accdb"
     Dim conn As New OleDbConnection(connString)
 
     Public Sub LoadRecentActivity()

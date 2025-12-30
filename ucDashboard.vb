@@ -3,7 +3,7 @@
 
 Public Class ucDashboard
     'Connecting the database such that the content on it is accessible
-    Dim connString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\UniClubDB.accdb"
+    Dim connString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\UniClubDB BD.accdb"
     Dim conn As New OleDbConnection(connString)
     Private Sub pnlMain_Paint(sender As Object, e As PaintEventArgs) Handles pnlMain.Paint
         'Get the last 3 entries from the database and display them as the most recent entries
