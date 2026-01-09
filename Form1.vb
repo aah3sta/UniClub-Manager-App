@@ -133,4 +133,5 @@ Public Class Form1
         Dim dashboardPage As New ucDashboard()
         SwitchScreen(dashboardPage)
     End Sub
+
 End Class

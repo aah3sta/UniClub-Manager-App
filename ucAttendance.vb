@@ -131,9 +131,6 @@ Public Class ucAttendance
         presentMembers.Clear()
     End Sub
 
-    Private Sub txtSearchName_TextChanged(sender As Object, e As EventArgs) Handles txtSearchName.TextChanged
-
-    End Sub
 End Class
 
 

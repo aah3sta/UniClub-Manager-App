@@ -9,13 +9,12 @@ Public Class ucRegister
 
     End Sub
 
-
     Private Sub BtnSubmitRegistration_Click(sender As Object, e As EventArgs) Handles btnSubmitRegistration.Click
         ' Validate required fields
         If txtFullName.Text.Trim() = "" OrElse
-       txtEmail.Text.Trim() = "" OrElse
-       txtCourse.Text.Trim() = "" OrElse
-       txtDepartment.Text.Trim() = "" Then
+         txtEmail.Text.Trim() = "" OrElse
+         txtCourse.Text.Trim() = "" OrElse
+         txtDepartment.Text.Trim() = "" Then
 
             MessageBox.Show("Please fill in all required fields", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub

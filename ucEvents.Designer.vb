@@ -24,7 +24,7 @@ Partial Class ucEvents
     Private Sub InitializeComponent()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         Label3 = New Label()
-        TextBox2 = New TextBox()
+        txtEventID = New TextBox()
         lblFullName = New Label()
         txtEventName = New TextBox()
         lblEmail = New Label()
@@ -34,12 +34,11 @@ Partial Class ucEvents
         Label1 = New Label()
         DateTimePicker1 = New DateTimePicker()
         Label2 = New Label()
-        TextBox1 = New TextBox()
+        txtCapacity = New TextBox()
         btnAddEvent = New Button()
         btnClear = New Button()
         lblRegisterMember = New Label()
         PictureBox1 = New PictureBox()
-        lstEvents = New ListBox()
         FlowLayoutPanel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -48,7 +47,7 @@ Partial Class ucEvents
         ' 
         FlowLayoutPanel1.BackColor = SystemColors.MenuHighlight
         FlowLayoutPanel1.Controls.Add(Label3)
-        FlowLayoutPanel1.Controls.Add(TextBox2)
+        FlowLayoutPanel1.Controls.Add(txtEventID)
         FlowLayoutPanel1.Controls.Add(lblFullName)
         FlowLayoutPanel1.Controls.Add(txtEventName)
         FlowLayoutPanel1.Controls.Add(lblEmail)
@@ -58,7 +57,7 @@ Partial Class ucEvents
         FlowLayoutPanel1.Controls.Add(Label1)
         FlowLayoutPanel1.Controls.Add(DateTimePicker1)
         FlowLayoutPanel1.Controls.Add(Label2)
-        FlowLayoutPanel1.Controls.Add(TextBox1)
+        FlowLayoutPanel1.Controls.Add(txtCapacity)
         FlowLayoutPanel1.Location = New Point(147, 49)
         FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         FlowLayoutPanel1.Size = New Size(332, 312)
@@ -75,12 +74,12 @@ Partial Class ucEvents
         Label3.TabIndex = 28
         Label3.Text = "Event ID"
         ' 
-        ' TextBox2
+        ' txtEventID
         ' 
-        TextBox2.Location = New Point(84, 3)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(238, 27)
-        TextBox2.TabIndex = 29
+        txtEventID.Location = New Point(84, 3)
+        txtEventID.Name = "txtEventID"
+        txtEventID.Size = New Size(238, 27)
+        txtEventID.TabIndex = 29
         ' 
         ' lblFullName
         ' 
@@ -166,12 +165,12 @@ Partial Class ucEvents
         Label2.TabIndex = 26
         Label2.Text = "Capacity"
         ' 
-        ' TextBox1
+        ' txtCapacity
         ' 
-        TextBox1.Location = New Point(3, 281)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(319, 27)
-        TextBox1.TabIndex = 27
+        txtCapacity.Location = New Point(3, 281)
+        txtCapacity.Name = "txtCapacity"
+        txtCapacity.Size = New Size(319, 27)
+        txtCapacity.TabIndex = 27
         ' 
         ' btnAddEvent
         ' 
@@ -219,20 +218,10 @@ Partial Class ucEvents
         PictureBox1.TabIndex = 24
         PictureBox1.TabStop = False
         ' 
-        ' lstEvents
-        ' 
-        lstEvents.FormattingEnabled = True
-        lstEvents.ItemHeight = 20
-        lstEvents.Location = New Point(487, 49)
-        lstEvents.Name = "lstEvents"
-        lstEvents.Size = New Size(120, 304)
-        lstEvents.TabIndex = 25
-        ' 
         ' ucEvents
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        Controls.Add(lstEvents)
         Controls.Add(PictureBox1)
         Controls.Add(lblRegisterMember)
         Controls.Add(FlowLayoutPanel1)
@@ -260,10 +249,9 @@ Partial Class ucEvents
     Friend WithEvents Label1 As Label
     Friend WithEvents lblRegisterMember As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtCapacity As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtEventID As TextBox
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents lstEvents As ListBox
 
 End Class

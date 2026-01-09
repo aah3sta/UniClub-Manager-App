@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class ucAttendance
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ucAttendance
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         dgvAttendance = New DataGridView()
         Column1 = New DataGridViewTextBoxColumn()
@@ -41,11 +41,11 @@ Partial Class ucAttendance
         dgvAttendance.BackgroundColor = SystemColors.Highlight
         dgvAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvAttendance.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3})
-        dgvAttendance.Location = New Point(68, 142)
+        dgvAttendance.Location = New Point(54, 114)
         dgvAttendance.Margin = New Padding(2)
         dgvAttendance.Name = "dgvAttendance"
         dgvAttendance.RowHeadersWidth = 62
-        dgvAttendance.Size = New Size(632, 302)
+        dgvAttendance.Size = New Size(506, 242)
         dgvAttendance.TabIndex = 0
         ' 
         ' Column1
@@ -71,19 +71,19 @@ Partial Class ucAttendance
         ' 
         ' dtpMeetingDate
         ' 
-        dtpMeetingDate.Location = New Point(399, 34)
+        dtpMeetingDate.Location = New Point(319, 27)
         dtpMeetingDate.Margin = New Padding(2)
         dtpMeetingDate.Name = "dtpMeetingDate"
-        dtpMeetingDate.Size = New Size(300, 31)
+        dtpMeetingDate.Size = New Size(241, 27)
         dtpMeetingDate.TabIndex = 1
         ' 
         ' btnClearAttendance
         ' 
         btnClearAttendance.FlatStyle = FlatStyle.Popup
-        btnClearAttendance.Location = New Point(416, 451)
+        btnClearAttendance.Location = New Point(333, 361)
         btnClearAttendance.Margin = New Padding(2)
         btnClearAttendance.Name = "btnClearAttendance"
-        btnClearAttendance.Size = New Size(128, 45)
+        btnClearAttendance.Size = New Size(102, 36)
         btnClearAttendance.TabIndex = 3
         btnClearAttendance.Text = "CLEAR"
         btnClearAttendance.UseVisualStyleBackColor = True
@@ -93,28 +93,28 @@ Partial Class ucAttendance
         btnSave.BackColor = Color.SkyBlue
         btnSave.FlatStyle = FlatStyle.Popup
         btnSave.Font = New Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnSave.Location = New Point(224, 451)
+        btnSave.Location = New Point(179, 361)
         btnSave.Margin = New Padding(2)
         btnSave.Name = "btnSave"
-        btnSave.Size = New Size(130, 45)
+        btnSave.Size = New Size(104, 36)
         btnSave.TabIndex = 4
         btnSave.Text = "SAVE"
         btnSave.UseVisualStyleBackColor = False
         ' 
         ' txtSearchName
         ' 
-        txtSearchName.Location = New Point(68, 36)
+        txtSearchName.Location = New Point(54, 29)
         txtSearchName.Margin = New Padding(2)
         txtSearchName.Name = "txtSearchName"
-        txtSearchName.Size = New Size(206, 31)
+        txtSearchName.Size = New Size(166, 27)
         txtSearchName.TabIndex = 6
         ' 
         ' btnSearch
         ' 
-        btnSearch.Location = New Point(68, 85)
+        btnSearch.Location = New Point(224, 31)
         btnSearch.Margin = New Padding(2)
         btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(206, 31)
+        btnSearch.Size = New Size(69, 25)
         btnSearch.TabIndex = 7
         btnSearch.Text = "Search"
         btnSearch.TextAlign = ContentAlignment.MiddleLeft
@@ -123,16 +123,15 @@ Partial Class ucAttendance
         ' lstAttendance
         ' 
         lstAttendance.FormattingEnabled = True
-        lstAttendance.ItemHeight = 25
-        lstAttendance.Location = New Point(68, 75)
+        lstAttendance.Location = New Point(54, 60)
         lstAttendance.Margin = New Padding(2)
         lstAttendance.Name = "lstAttendance"
-        lstAttendance.Size = New Size(206, 4)
+        lstAttendance.Size = New Size(166, 24)
         lstAttendance.TabIndex = 8
         ' 
         ' ucAttendance
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(lstAttendance)
         Controls.Add(btnSearch)
@@ -143,7 +142,7 @@ Partial Class ucAttendance
         Controls.Add(dgvAttendance)
         Margin = New Padding(2)
         Name = "ucAttendance"
-        Size = New Size(771, 522)
+        Size = New Size(617, 418)
         CType(dgvAttendance, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()

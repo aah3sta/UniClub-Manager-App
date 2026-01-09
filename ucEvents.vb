@@ -1,72 +1,67 @@
-﻿Imports System.Data.OleDb
+﻿Imports System.Data
+Imports System.Data.OleDb
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class ucEvents
-
     Private EventsList As New List(Of String)()
-    Private ReadOnly connString As String = "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=|DataDirectory|\UniClubDB.accdb"
+    Private ReadOnly connString As String = "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=|DataDirectory|\UniClubDB BD.accdb"
 
-    Private Sub ucEvents_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub btnAddEvent_Click(sender As Object, e As EventArgs)
-
-        If txtEventName.Text = "" Or txtVenue.Text = "" Then
-            MessageBox.Show("Please fill all fields")
-            Exit Sub
-        End If
-
-        Dim eventDetails =
-            txtEventName.Text & " | " &
-            DateTimePicker1.Value.ToShortDateString & " | " &
-            txtVenue.Text
-
-        EventsList.Add(eventDetails)
-        lstEvents.Items.Add(eventDetails)
-
-        MessageBox.Show("Event added successfully")
-    End Sub
-
-    Private Sub btnClear_Click(sender As Object, e As EventArgs)
-        txtEventName.Clear
-        txtVenue.Clear
-        DateTimePicker1.Value = Date.Now
-    End Sub
-
-    Private Sub btnAddEvent_Click_1(sender As Object, e As EventArgs) Handles btnAddEvent.Click
-        If txtEventName.Text.Trim() = "" Or
-       txtVenue.Text.Trim() = "" Or
-       txtLocation.Text.Trim() = "" Then
-
-            MessageBox.Show("Please fill in all fields.",
+    Private Sub btnAddEvent_Click(sender As Object, e As EventArgs) Handles btnAddEvent.Click
+        ' Validate required fields
+        If txtEventName.Text = "" Or txtVenue.Text = "" Or
+            txtLocation.Text = "" Or txtCapacity.Text = "" Then
+            MessageBox.Show("Please fill all fields",
                         "Missing Information",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning)
             Exit Sub
         End If
 
+        'Connect to database and insert new event
+        Try
+            Dim sql As String = "INSERT INTO Events ([EventName], [Venue], [Location], [EventDate], [Capacity], [EventDescription]) " &
+                           "VALUES (@EventName, @Venue, @Location, @EventDate, @Capacity, @EventDescription)"
+            Using conn As New OleDbConnection(connString)
+                Using cmd As New OleDbCommand(sql, conn)
+                    cmd.CommandType = CommandType.Text
 
-        MessageBox.Show("Event saved successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information)
-    End Sub
+                    cmd.Parameters.Add("@EventName", OleDbType.VarWChar).Value = txtEventName.Text.Trim()
+                    cmd.Parameters.Add("@Venue", OleDbType.VarWChar).Value = txtVenue.Text.Trim()
+                    cmd.Parameters.Add("@Location", OleDbType.VarWChar).Value = txtLocation.Text.Trim()
+                    cmd.Parameters.Add("@EventDate", OleDbType.Date).Value = DateTimePicker1.Value.Date
+                    cmd.Parameters.Add("@Capacity", OleDbType.Integer).Value = Convert.ToInt32(txtCapacity.Text.Trim())
+                    cmd.Parameters.Add("@EventDescription", OleDbType.VarWChar).Value = "No Description Provided"
 
-    Private Sub ClearFields()
-        txtEventName.Clear()
-        txtLocation.Clear()
-        TextBox1.Clear()
-        TextBox2.Clear()
-        DateTimePicker1.Value = Date.Now
-        ' Keep TextBox2 (EventID)
-    End Sub
+                    conn.Open()
+                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                    conn.Close()
 
-    ' Legacy/non-handled methods retained (no Handles clause) — safe to remove if unused
-    Private Sub btnAddEvent_Click(sender As Object, e As EventArgs)
-        ' kept for compatibility; main handler is btnAddEvent_Click_1
+                    If rowsAffected > 0 Then
+                        MessageBox.Show("Event registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ' Clear form
+                        txtEventName.Clear()
+                        txtVenue.Clear()
+                        txtLocation.Clear()
+                        txtCapacity.Clear()
+                        txtEventID.Clear()
+                        DateTimePicker1.Value = Date.Now
+                    Else
+                        MessageBox.Show("Event logging failed: no rows were inserted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error saving event: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs)
-        ' kept for compatibility; main handler is btnClear_Click_1
+        ' Clear form
+        txtEventName.Clear()
+        txtVenue.Clear()
+        txtLocation.Clear()
+        txtCapacity.Clear()
+        txtEventID.Clear()
+        DateTimePicker1.Value = Date.Now
     End Sub
 End Class
