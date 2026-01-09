@@ -41,11 +41,11 @@ Partial Class ucAttendance
         dgvAttendance.BackgroundColor = SystemColors.Highlight
         dgvAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvAttendance.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3})
-        dgvAttendance.Location = New Point(54, 114)
+        dgvAttendance.Location = New Point(68, 142)
         dgvAttendance.Margin = New Padding(2)
         dgvAttendance.Name = "dgvAttendance"
         dgvAttendance.RowHeadersWidth = 62
-        dgvAttendance.Size = New Size(506, 242)
+        dgvAttendance.Size = New Size(632, 302)
         dgvAttendance.TabIndex = 0
         ' 
         ' Column1
@@ -71,19 +71,19 @@ Partial Class ucAttendance
         ' 
         ' dtpMeetingDate
         ' 
-        dtpMeetingDate.Location = New Point(319, 27)
+        dtpMeetingDate.Location = New Point(399, 34)
         dtpMeetingDate.Margin = New Padding(2)
         dtpMeetingDate.Name = "dtpMeetingDate"
-        dtpMeetingDate.Size = New Size(241, 27)
+        dtpMeetingDate.Size = New Size(300, 31)
         dtpMeetingDate.TabIndex = 1
         ' 
         ' btnClearAttendance
         ' 
         btnClearAttendance.FlatStyle = FlatStyle.Popup
-        btnClearAttendance.Location = New Point(333, 361)
+        btnClearAttendance.Location = New Point(416, 451)
         btnClearAttendance.Margin = New Padding(2)
         btnClearAttendance.Name = "btnClearAttendance"
-        btnClearAttendance.Size = New Size(102, 36)
+        btnClearAttendance.Size = New Size(128, 45)
         btnClearAttendance.TabIndex = 3
         btnClearAttendance.Text = "CLEAR"
         btnClearAttendance.UseVisualStyleBackColor = True
@@ -93,28 +93,28 @@ Partial Class ucAttendance
         btnSave.BackColor = Color.SkyBlue
         btnSave.FlatStyle = FlatStyle.Popup
         btnSave.Font = New Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnSave.Location = New Point(179, 361)
+        btnSave.Location = New Point(224, 451)
         btnSave.Margin = New Padding(2)
         btnSave.Name = "btnSave"
-        btnSave.Size = New Size(104, 36)
+        btnSave.Size = New Size(130, 45)
         btnSave.TabIndex = 4
         btnSave.Text = "SAVE"
         btnSave.UseVisualStyleBackColor = False
         ' 
         ' txtSearchName
         ' 
-        txtSearchName.Location = New Point(54, 29)
+        txtSearchName.Location = New Point(68, 36)
         txtSearchName.Margin = New Padding(2)
         txtSearchName.Name = "txtSearchName"
-        txtSearchName.Size = New Size(166, 27)
+        txtSearchName.Size = New Size(206, 31)
         txtSearchName.TabIndex = 6
         ' 
         ' btnSearch
         ' 
-        btnSearch.Location = New Point(54, 68)
+        btnSearch.Location = New Point(68, 85)
         btnSearch.Margin = New Padding(2)
         btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(165, 25)
+        btnSearch.Size = New Size(206, 31)
         btnSearch.TabIndex = 7
         btnSearch.Text = "Search"
         btnSearch.TextAlign = ContentAlignment.MiddleLeft
@@ -123,15 +123,16 @@ Partial Class ucAttendance
         ' lstAttendance
         ' 
         lstAttendance.FormattingEnabled = True
-        lstAttendance.Location = New Point(54, 60)
+        lstAttendance.ItemHeight = 25
+        lstAttendance.Location = New Point(68, 75)
         lstAttendance.Margin = New Padding(2)
         lstAttendance.Name = "lstAttendance"
-        lstAttendance.Size = New Size(166, 4)
+        lstAttendance.Size = New Size(206, 4)
         lstAttendance.TabIndex = 8
         ' 
         ' ucAttendance
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(10.0F, 25.0F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(lstAttendance)
         Controls.Add(btnSearch)
@@ -142,7 +143,7 @@ Partial Class ucAttendance
         Controls.Add(dgvAttendance)
         Margin = New Padding(2)
         Name = "ucAttendance"
-        Size = New Size(617, 418)
+        Size = New Size(771, 522)
         CType(dgvAttendance, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
