@@ -8,6 +8,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <Platforms>AnyCPU;x86</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,9 +48,20 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Update="UniClubDB.accdb">
+    <!-- Track the actual on-disk DB file (note the space in the filename). -->
+    <None Update="UniClubDB .accdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <!-- Copy/rename the on-disk DB to the expected runtime filename in the output folder -->
+  <Target Name="CopyDbToOutput" AfterTargets="Build">
+    <PropertyGroup>
+      <_SourceDb>$(ProjectDir)UniClubDB .accdb</_SourceDb>
+      <_DestDb>$(OutDir)UniClubDB.accdb</_DestDb>
+    </PropertyGroup>
+    <Message Importance="High" Text="Ensuring database output file: $(_DestDb)" />
+    <Copy SourceFiles="$(_SourceDb)" DestinationFiles="$(_DestDb)" SkipUnchangedFiles="true" Condition="Exists('$(_SourceDb)')" />
+  </Target>
 
 </Project>

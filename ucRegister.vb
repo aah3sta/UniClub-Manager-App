@@ -3,7 +3,7 @@ Imports System.Data
 
 Public Class ucRegister
 
-    Private ReadOnly connString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\UniClubDB BD.accdb"
+    Private ReadOnly connString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\UniClubDB.accdb"
 
     Private Sub ucRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -27,23 +27,27 @@ Public Class ucRegister
             Exit Sub
         End If
 
-        ' Call the saved Access query named "AddMemberQuery".
-        ' The saved query must accept parameters in the order provided below.
-        ' Expected parameter order in the saved query: FullName, Email, Course, Department, PhoneNumber, JoinDate
         Try
-            Dim sql As String = "INSERT INTO Members (FullName, Email, Course, Department, PhoneNumber, JoinDate) VALUES (?,?,?,?,?,?)"
+            ' Use brackets to avoid reserved word conflicts; explicit parameter types to avoid type inference issues
+            ' Exclude JoinDate so the database default (auto timestamp) is used
+            Dim sql As String = "INSERT INTO Members ([FullName], [Email], [Course], [Department], [PhoneNumber]) VALUES (@FullName, @Email, @Course, @Department, @PhoneNumber)"
             Using conn As New OleDbConnection(connString)
-                Using cmd As New OleDbCommand("AddMemberQuery", conn)
-                    cmd.CommandType = CommandType.StoredProcedure
+                Using cmd As New OleDbCommand(sql, conn)
+                    cmd.CommandType = CommandType.Text
 
-                    ' OleDb for Access uses positional parameters; names here are for clarity only.
-                    cmd.Parameters.AddWithValue("@MemberID", TextBox2.Text.Trim())
-                    cmd.Parameters.AddWithValue("@FullName", txtFullName.Text.Trim())
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
-                    cmd.Parameters.AddWithValue("@Department", txtDepartment.Text.Trim())
-                    cmd.Parameters.AddWithValue("@PhoneNumber", TextBox1.Text.Trim())
-                    cmd.Parameters.AddWithValue("@Course", txtCourse.Text.Trim())
-                    cmd.Parameters.AddWithValue("@JoinDate", DateTime.Now)
+                    cmd.Parameters.Add(New OleDbParameter("@FullName", OleDbType.VarWChar)).Value = txtFullName.Text.Trim()
+                    cmd.Parameters.Add(New OleDbParameter("@Email", OleDbType.VarWChar)).Value = txtEmail.Text.Trim()
+                    cmd.Parameters.Add(New OleDbParameter("@Course", OleDbType.VarWChar)).Value = txtCourse.Text.Trim()
+                    cmd.Parameters.Add(New OleDbParameter("@Department", OleDbType.VarWChar)).Value = txtDepartment.Text.Trim()
+
+                    ' PhoneNumber is Short Text in Access; pass DBNull if empty
+                    Dim phoneParam As New OleDbParameter("@PhoneNumber", OleDbType.VarWChar)
+                    If String.IsNullOrWhiteSpace(TextBox1.Text) Then
+                        phoneParam.Value = DBNull.Value
+                    Else
+                        phoneParam.Value = TextBox1.Text.Trim()
+                    End If
+                    cmd.Parameters.Add(phoneParam)
 
                     conn.Open()
                     Dim rowsAffected As Integer = cmd.ExecuteNonQuery()

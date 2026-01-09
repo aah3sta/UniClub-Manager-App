@@ -39,6 +39,7 @@ Partial Class ucEvents
         btnClear = New Button()
         lblRegisterMember = New Label()
         PictureBox1 = New PictureBox()
+        lstEvents = New ListBox()
         FlowLayoutPanel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -218,10 +219,20 @@ Partial Class ucEvents
         PictureBox1.TabIndex = 24
         PictureBox1.TabStop = False
         ' 
+        ' lstEvents
+        ' 
+        lstEvents.FormattingEnabled = True
+        lstEvents.ItemHeight = 20
+        lstEvents.Location = New Point(487, 49)
+        lstEvents.Name = "lstEvents"
+        lstEvents.Size = New Size(120, 304)
+        lstEvents.TabIndex = 25
+        ' 
         ' ucEvents
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
+        Controls.Add(lstEvents)
         Controls.Add(PictureBox1)
         Controls.Add(lblRegisterMember)
         Controls.Add(FlowLayoutPanel1)
@@ -253,5 +264,6 @@ Partial Class ucEvents
     Friend WithEvents Label3 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents lstEvents As ListBox
 
 End Class
