@@ -1,7 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class ucAttendance
-    ' In-memory member cache: (FullName, School)
     Private members As New List(Of (FullName As String, School As String))()
     Private presentMembers As New List(Of String)()
 
@@ -46,7 +45,6 @@ Public Class ucAttendance
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         MessageBox.Show("Attendance saved successfully!")
-        ' No DB persistence as requested
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -130,7 +128,6 @@ Public Class ucAttendance
         dgvAttendance.Rows.Clear()
         presentMembers.Clear()
     End Sub
-
 End Class
 
 

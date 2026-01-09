@@ -4,7 +4,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class ucEvents
     Private EventsList As New List(Of String)()
-    Private ReadOnly connString As String = "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=|DataDirectory|\UniClubDB BD.accdb"
+    Private ReadOnly connString As String = "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=|DataDirectory|\UniClubDB.accdb"
 
     Private Sub btnAddEvent_Click(sender As Object, e As EventArgs) Handles btnAddEvent.Click
         ' Validate required fields

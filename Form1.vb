@@ -1,6 +1,5 @@
 ﻿Imports System.Data.OleDb
 Public Class Form1
-    ' Remove hardcoded provider; use DbConfig.ConnString
     Dim conn As OleDbConnection
 
     Public Sub LoadRecentActivity()
@@ -26,18 +25,12 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' Ensure |DataDirectory| points to the running exe folder so the DB resolves reliably
         AppDomain.CurrentDomain.SetData("DataDirectory", Application.StartupPath)
-
-        ' Build a runtime connection string that matches installed provider
         DbConfig.ConnString = ResolveConnectionString()
-
-        ' Initialize connection once resolved
         conn = New OleDbConnection(DbConfig.ConnString)
 
         LoadRecentActivity()
-
+        'Load member count stats
         Try
             conn.Open()
             Dim cmd As New OleDbCommand("SELECT COUNT(*) FROM Members", conn)
@@ -48,7 +41,7 @@ Public Class Form1
             MessageBox.Show("Error loading stats: " & ex.Message)
             If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then conn.Close()
         End Try
-
+        'Load event count stats
         Try
             conn.Open()
             Dim cmd As New OleDbCommand("SELECT COUNT(*) FROM Events", conn)
@@ -60,37 +53,6 @@ Public Class Form1
             If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then conn.Close()
         End Try
     End Sub
-
-    Private Function ResolveConnectionString() As String
-        ' Try providers in order; adjust to installed bits
-        Dim dbPath As String = System.IO.Path.Combine(Application.StartupPath, "UniClubDB.accdb")
-        Dim providers As String() = {"Microsoft.ACE.OLEDB.16.0", "Microsoft.ACE.OLEDB.12.0"}
-        For Each prov In providers
-            Dim cs As String = $"Provider={prov};Data Source={dbPath}"
-            Try
-                Using c As New OleDbConnection(cs)
-                    c.Open()
-                    c.Close()
-                End Using
-                Return cs
-            Catch
-                ' try next
-            End Try
-        Next
-
-        ' Fallback to ODBC driver
-        Dim odbc As String = $"Driver={{Microsoft Access Driver (*.mdb, *.accdb)}};Dbq={dbPath};"
-        Try
-            Using c As New OleDbConnection(odbc)
-                c.Open()
-                c.Close()
-            End Using
-            Return odbc
-        Catch ex As Exception
-            ' As last resort return a prov-12.0 string so the app fails with clear message
-            Return $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath}"
-        End Try
-    End Function
 
     Private Sub picClose_Click(sender As Object, e As EventArgs) Handles picClose.Click
         Close()
@@ -134,4 +96,33 @@ Public Class Form1
         SwitchScreen(dashboardPage)
     End Sub
 
+    Private Function ResolveConnectionString() As String
+        ' Try providers in order; adjust to installed bits
+        Dim dbPath As String = System.IO.Path.Combine(Application.StartupPath, "UniClubDB.accdb")
+        Dim providers As String() = {"Microsoft.ACE.OLEDB.16.0", "Microsoft.ACE.OLEDB.12.0"}
+        For Each prov In providers
+            Dim cs As String = $"Provider={prov};Data Source={dbPath}"
+            Try
+                Using c As New OleDbConnection(cs)
+                    c.Open()
+                    c.Close()
+                End Using
+                Return cs
+            Catch
+            End Try
+        Next
+
+        ' Fallback to ODBC driver
+        Dim odbc As String = $"Driver={{Microsoft Access Driver (*.mdb, *.accdb)}};Dbq={dbPath};"
+        Try
+            Using c As New OleDbConnection(odbc)
+                c.Open()
+                c.Close()
+            End Using
+            Return odbc
+        Catch ex As Exception
+            ' As last resort return a prov-12.0 string so the app fails with clear message
+            Return $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath}"
+        End Try
+    End Function
 End Class
